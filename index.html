@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: lightgray;
+      }
+      #logo {
+        font-size: 30px;
+        font-weight: bold;
+        font-family:monospace;
+      }
+      #opening{
+        align-items: center;
+      }
+        #image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        #image {
+            width: 50%;
+        }
+
+        #input-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #upload-button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #filter-options {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div id="logo">Filteryy</div>
+        <div>
+          <button>Hire a content strategist!</button>
+          <button>Add a suggestion</button>
+          <button>Contact the developer</button>
+        </div>
+      </nav>
+      <div id="opening" > Upload an image from your device then choose a fliter!</div>
+    <div id="image-container">
+        <img id="image" />
+    </div>
+    
+    <div id="input-container">
+        <input type="file" id="file-input" />
+        <label for="file-input" id="upload-button">Upload Image</label>
+    </div>
+    <div id="filter-options">
+        <button id="filter-grayscale">Grayscale</button>
+        <button id="filter-sepia">Sepia</button>
+        <button id="filter-invert">Invert</button>
+        <button id="filter-lark">Lark</button>
+
+        <button id="new-upload-button">Upload New Image</button>
+    </div>
+</body>
+  <script>
+    const image = document.getElementById("image");
+    const fileInput = document.getElementById("file-input");
+
+    const filterGrayscale = document.getElementById("filter-grayscale");
+    const filterSepia = document.getElementById("filter-sepia");
+    const filterInvert = document.getElementById("filter-invert");
+    const filterLark = document.getElementById("filter-lark");
+
+    const newUploadButton = document.getElementById("new-upload-button");
+
+    fileInput.addEventListener("change", function () {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            image.src = reader.result;
+        });
+
+        reader.readAsDataURL(file);
+    });
+
+    newUploadButton.addEventListener("click", function () {
+        fileInput.value = "";
+        image.src = "";
+        image.style.filter = "";
+    });
+
+    filterGrayscale.addEventListener("click", function () {
+        image.style.filter = "grayscale(100%)";
+    });
+
+    filterSepia.addEventListener("click", function () {
+        image.style.filter = "sepia(100%)";
+    });
+
+    filterInvert.addEventListener("click", function () {
+        image.style.filter = "invert(100%)";
+    });
+
+    filterLark.addEventListener("click", function () {
+        image.style.filter = "lark(100%)";
+    });
+
+  </script>
+</html>
